@@ -4,17 +4,38 @@ library(keras)
 library(tensorflow)
 library(reticulate)
 
-#Need to change this line for your wd
-setwd("C:/Users/annab/OneDrive/Documents/project-2")
 
- 
-
+setwd("C:/Users/oopsw/Desktop/project2/project-2")
 model<-load_model_tf("./dandelion_model")
 
 #Algorithm======================================================================
-#Need to alter images.
+# python part
+tf <- import("tensorflow")
+Sys.setenv(TF_CPP_MIN_LOG_LEVEL = "2")
+# img <- load.image("data-for-332/grass/5.jpg")
+img_raw <- tf$io$read_file("data-for-332/grass/5.jpg")
+img <- tf$image$decode_image(img_raw)
 
 
+loss_object <- tf$keras$losses$CategoricalCrossentropy()
+
+
+
+
+# library(imager)
+# library(GenSA)
+# img <- load.image("data-for-332/grass/5.jpg")
+# cost_function <- function(x, img) {
+#   modified_img <- apply_filters(img, x[1], x[2], x[3])
+#   mse <- sum((modified_img - img)^2) / length(img)
+#   return(mse)
+# }
+# up <- c(50,50,50)
+# low <- c(-50,-50,-50)
+# initial_solution <- c(0, 0, 0)
+# result <- GenSA(fn = cost_function, lower = low, upper = up, initial_solution, img)
+# modified_img <- apply_filters(img, result$xbest[1], result$xbest[2], result$xbest[3])
+# writeJPEG(modified_img, "C:/Users/oopsw/Desktop/project2/project-2")
 #Test===========================================================================
 
 res=c("","")
@@ -26,9 +47,6 @@ for (i in f){
   x <- array_reshape(x, c(1, dim(x)))
   x <- x/255
   pred <- model %>% predict(x)
-#  if(pred[1,2]<0.50){
-    #print(i)
-  #}
   print(pred)
 }
 
@@ -41,9 +59,6 @@ for (i in f){
   x <- array_reshape(x, c(1, dim(x)))
   x <- x/255
   pred <- model %>% predict(x)
-#  if(pred[1,1]<0.50){
-  #   print(i)
-  #}
   print(pred)
 }
 
