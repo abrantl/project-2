@@ -1,0 +1,209 @@
+\documentclass[11pt]{article}
+
+%  USE PACKAGES  ---------------------- 
+\usepackage{titlesec}
+\usepackage[margin=0.7in,vmargin=1in]{geometry}
+\usepackage{amsmath,amsthm,amsfonts}
+\usepackage{amssymb}
+\usepackage{fancyhdr}
+\usepackage{enumerate}
+\usepackage{mathtools}
+\usepackage{hyperref,color}
+\usepackage{enumitem,amssymb}
+\newlist{todolist}{itemize}{4}
+\setlist[todolist]{label=$\square$}
+\usepackage{pifont}
+\newcommand{\cmark}{\ding{51}}%
+\newcommand{\xmark}{\ding{55}}%
+\newcommand{\done}{\rlap{$\square$}{\raisebox{2pt}{\large\hspace{1pt}\cmark}}%
+\hspace{-2.5pt}}
+\newcommand{\HREF}[2]{\href{#1}{#2}}
+\usepackage{textcomp}
+\usepackage{xcolor,listings}
+\definecolor{codegreen}{rgb}{0,0.6,0}
+\definecolor{codegray}{rgb}{0.5,0.5,0.5}
+\definecolor{codepurple}{HTML}{C42043}
+\definecolor{backcolor}{HTML}{F2F2F2}
+\definecolor{bookcolor}{cmyk}{0,0,0,0.90}  
+\color{bookcolor}
+\lstdefinestyle{mystyle}{
+    backgroundcolor=\color{backcolor},   
+    commentstyle=\color{codegreen},
+    keywordstyle=\color{codepurple},
+    numberstyle=\numberstyle,
+    stringstyle=\color{codepurple},
+    basicstyle=\footnotesize\ttfamily,
+    breakatwhitespace=false,
+    breaklines=true,
+    captionpos=b,
+    keepspaces=true,
+    numbers=left,
+    numbersep=10pt,
+    showspaces=false,
+    showstringspaces=false,
+    showtabs=false,
+}
+\lstset{
+basicstyle=\small\ttfamily,
+% columns=flexible,
+upquote=true,
+breaklines=true,
+showstringspaces=false,
+style=mystyle
+}
+%  -------------------------------------------- 
+
+%  HEADER AND FOOTER --------------------------
+\pagestyle{fancy}
+\fancyhead{}
+\fancyhead[L]{\textbf{IE 332 Project \#2}}
+\newcommand{\maincontent}{
+\clearpage
+\phantom{}
+}
+\fancyfoot[L]{IE 332}
+\fancyfoot[C]{Project \#2 Report}
+\fancyfoot[R]{Page \thepage}
+\renewcommand{\footrulewidth}{0.4pt}
+%  --------------------------------------------
+
+%  COVER SHEET ----------------------
+\newcommand{\addcoversheet}{
+\clearpage
+\thispagestyle{empty}
+\vspace*{0.5in}
+
+\begin{center}
+\Huge{{\bf IE332 Project \#2}} 
+
+Due: April 28th, 11:59pm EST
+\end{center}
+
+\vspace{0.3in}
+
+\noindent We have {\bf read and understood the assignment instructions}. We certify that the submitted work does not violate any academic misconduct rules, and that it is solely our own work. By listing our names below we acknowledge that any misconduct will result in appropriate consequences. 
+
+\vspace{0.2in}
+
+\noindent {\em ``As a Boilermaker pursuing academic excellence, I pledge to be honest and true in all that I do.
+Accountable together -- we are Purdue.''}
+
+\vspace{0.5in}
+
+\begin{center}
+\textbf{Lucy Han\\ Laramie Lilly\\ Anna Brantley\\ Daniel Castellanos\\ Mitch Coapstick\\}
+\vfill
+\end{center}
+
+\vspace{1in}
+\begin{table}[h!]
+  \begin{center}
+    \label{tab:table1}
+    \begin{tabular}{c|ccccc|c|c}
+      Student & Q1 & Q2 & Q3 & Q4 & Q5 & Overall & DIFF\\
+      \hline
+      Anna Brantley & 10 & 10 & 10 & 10 & 60 & 100 & 0\\
+      Daniel Catellanos & 60 & 10 & 10 & 10 & 10 & 100 & 0\\
+      Lucy Han & 10 & 10 & 60 & 10 & 10 & 100 & 0 \\
+      Laramie Lilly & 10 & 10 & 10 & 60 & 10 & 100 & 0\\
+      Mitch Coapstick & 10 & 60 & 10 & 10 & 10 & 100 & 0\\
+      \hline
+      St Dev & 20 & 20 & 20 & 20 &20
+    \end{tabular}
+  \end{center}
+\end{table}
+
+\vspace{0.2in}
+
+\noindent Date: \today.
+}
+%  -----------------------------------------
+
+\begin{document}
+
+% Cover Sheet
+\addcoversheet
+
+% Table of Contents
+\pagebreak
+\tableofcontents
+
+% Main Content
+\maincontent
+\section{Introduction}
+
+    \par{}\par
+    \noindent Now a days, there has been an increase in the use of machine learning models in various fields, which includes image classification. This models are vulnerable to adversarial attacks, where slight modifications are made to the input data, causing the model to make incorrect predictions. This poses a significant threat to safety and security. It is therefore crucial to develop techniques to safeguard against such attacks.\newline
+
+Our project consist of training an optimization algorithm that utilizes voting based techniques to perform adversarial attacks on a binary image classifier. Our goal is to trick the provided image classifier by altering only a few pixels in the image. To achieve this, we will use five distinct machine learning and optimization algorithms, each independently attempting to trick the classifier. These five algorithms will then be incorporated into a six algorithm that assigns weights to each of them in a weighted majority classifier.\newline
+
+In the following sections of this report, we will discuss the justification for our choice of algorithms, provide evidence of the correctness of our code, and analyze the complexity of our overall algorithm. We will also evaluate the performance of our algorithm and provide a rationale for our final implementation. 
+    \par{}\par
+    \par{}\par
+
+\subsection{}
+    \par{}\par
+    \par{}\par
+    \par{}\par
+
+
+\maincontent
+\section{}
+\subsection{}
+\url{}
+\subsection{}
+    \par{}\par
+
+\maincontent
+\section{}
+\subsection{}
+\par{ }\par
+\subsection{}
+
+\par{}\par
+
+\par{}\par
+ 
+\par{}\par
+
+\par{}\par
+
+ \par{}\par
+
+\par{}\par
+
+\par{}\par
+ 
+
+\maincontent
+\section{}
+\subsection{}
+\par{}\par
+
+\par{}\par
+
+\subsection{}
+\par{}\par
+
+\par{}\par
+
+
+% References
+\maincontent
+\section{References}
+\subsection{}
+\url{}
+\par {} 
+
+
+%Appendices
+\maincontent
+\begin{center}
+\section{Appendices}
+\br
+\subsection{Testing/Correctness/Verification}
+\subsection{Complexity/Run-time}
+\end{center}
+
+
+\end{document}
