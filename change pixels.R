@@ -16,19 +16,20 @@ for (i in f){
   ## INSERT HERE WHAT YOU WANT TO ITERATE ON EACH OF THE IMAGES
   
   # Get the dimensions of the image
-  width <- dim(x)[1]
-  height <- dim(x)[2]
-  
+  width <- dim(x)[2]
+  height <- dim(x)[1]
+  print(width)
+  print(height)
   # Set the number of pixels to change
-  num_pixels_to_change <- (width*height)/10
+  num_pixels_to_change <- (width*height)/100
   
   pixel_locations <- sample(1:(width*height), num_pixels_to_change, replace = FALSE)
   
   
-  #for (i in 1:num_pixels_to_change) {
-  #  index <- arrayInd(pixel_locations[i], dim(image))
-  #  image[index[1], index[2], ] <- c(0, 0, 0)
-  #}
+  for (i in 1:num_pixels_to_change) {
+    index <- arrayInd(pixel_locations[i], dim(x))
+    x[index[1], index[2], ] <- c(0, 0, 0)
+  }
   
   # Save the modified image
   save.image(image, paste("./adversarial_examples1/",i, "2.jpg"))
