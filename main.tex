@@ -100,7 +100,7 @@ Accountable together -- we are Purdue.''}
   \begin{center}
     \label{tab:table1}
     \begin{tabular}{c|ccccc|c|c}
-      Student & Q1 & Q2 & Q3 & Q4 & Q5 & Overall & DIFF\\
+      Student & Alg Dev & Complexity & Implementation & Performance & Report & Overall & DIFF\\
       \hline
       Anna Brantley & 10 & 10 & 10 & 10 & 60 & 100 & 0\\
       Daniel Catellanos & 60 & 10 & 10 & 10 & 10 & 100 & 0\\
@@ -130,8 +130,8 @@ Accountable together -- we are Purdue.''}
 
 % Main Content
 \maincontent
-\section{Introduction}
-
+\section{Introduction and Main Text}
+\subsection{Introduction}
     \par{}\par
     \noindent Now a days, there has been an increase in the use of machine learning models in various fields, which includes image classification. This models are vulnerable to adversarial attacks, where slight modifications are made to the input data, causing the model to make incorrect predictions. This poses a significant threat to safety and security. It is therefore crucial to develop techniques to safeguard against such attacks.\newline
 
@@ -141,7 +141,11 @@ In the following sections of this report, we will discuss the justification for 
     \par{}\par
     \par{}\par
 
-\subsection{}
+\subsection{Description}
+ \par{}\par
+ We attempted to approach this project by choosing five types of sub-algorithms, then find a means of implementing them in R. For reasons we will elaborate on, we were not able to implement the five sub-algorithms we originally intended to work with. We will instead use this report to discuss what we would expect our five theoretical algorithms, and the far less effective, actual implementation. The five algorithms we decided on were Fast Gradient Sign Method (FGSM), Projected Gradient Descent (PGD), DeepFool, Carlini-Wagner (CW), and Basic Iterative Method (BIM). PGD and BIM are variants of FGSM, and they all have similar runtimes, performances, and characteristics. FGSM is the simplest and fastest of the three, but is the least affective. BIM is slower than FGSM, but more effective than PGD
+ \par{}\par
+
     \par{}\par
     \par{}\par
     \par{}\par
@@ -202,7 +206,97 @@ In the following sections of this report, we will discuss the justification for 
 \section{Appendices}
 \br
 \subsection{Testing/Correctness/Verification}
+\par{}\par
+\begin{center}
+\begin{tabular}{||c||} 
+ \hline
+ Fast Gradient Sign Method\\ [0.5ex] 
+ \hline
+ Loop Invariant: \\ 
+ \hline
+ Initialization: \\
+ \hline
+ Maintenance: \\
+ \hline
+ Termination: \\
+ \hline
+ Finalization: \\ [1ex] 
+ \hline
+\end{tabular}
+\end{center}
+\br
+\begin{center}
+\begin{tabular}{||c||} 
+ \hline
+ Projected Gradient Descent\\ [0.5ex] 
+ \hline
+ Loop Invariant: \\ 
+ \hline
+ Initialization: \\
+ \hline
+ Maintenance: \\
+ \hline
+ Termination: \\
+ \hline
+ Finalization: \\ [1ex] 
+ \hline
+\end{tabular}
+\end{center}
+\br
+\begin{center}
+\begin{tabular}{||c||} 
+ \hline
+ Deep-fool\\ [0.5ex] 
+ \hline
+ Loop Invariant: \\ 
+ \hline
+ Initialization: \\
+ \hline
+ Maintenance: \\
+ \hline
+ Termination: \\
+ \hline
+ Finalization: \\ [1ex] 
+ \hline
+\end{tabular}
+\end{center}
+\br
+\begin{center}
+\begin{tabular}{||c||} 
+ \hline
+ Carlini-Wagner\\ [0.5ex] 
+ \hline
+ Loop Invariant: \\ 
+ \hline
+ Initialization: \\
+ \hline
+ Maintenance: \\
+ \hline
+ Termination: \\
+ \hline
+ Finalization: \\ [1ex] 
+ \hline
+\end{tabular}
+\end{center}
 \subsection{Complexity/Run-time}
+\end{center}
+\br
+\begin{center}
+\begin{tabular}{||c||} 
+ \hline
+ Basic Iterative Method\\ [0.5ex] 
+ \hline
+ Loop Invariant: \\ 
+ \hline
+ Initialization: \\
+ \hline
+ Maintenance: \\
+ \hline
+ Termination: \\
+ \hline
+ Finalization: \\ [1ex] 
+ \hline
+\end{tabular}
 \end{center}
 
 
