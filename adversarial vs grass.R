@@ -20,9 +20,9 @@ model<-load_model_tf("./dandelion_model")
 #Test===========================================================================
 
 res=c("","")
-f=list.files("./grass")
+f=list.files("./dandelions")
 for (i in f){
-  test_image <- image_load(paste("./grass/",i,sep=""), #Need to create folder named grass and add images of grass to it
+  test_image <- image_load(paste("./dandelions/",i,sep=""), #Need to create folder named grass and add images of grass to it
                            target_size = c(224,224))
   x <- image_to_array(test_image)
   x <- array_reshape(x, c(1, dim(x)))
@@ -35,9 +35,9 @@ for (i in f){
 }
 
 res=c("","")
-f=list.files("./adversarial_examples/")
+f=list.files("./changing grass folder with black then green pixels/")
 for (i in f){
-  test_image <- image_load(paste("./adversarial_examples/",i,sep=""), #Need to create folder named dandelions and add images of dandelions to it. 
+  test_image <- image_load(paste("./changing grass folder with black then green pixels/",i,sep=""), #Need to create folder named dandelions and add images of dandelions to it. 
                            target_size = c(224,224))
   x <- image_to_array(test_image) #turn to array
   x <- array_reshape(x, c(1, dim(x))) #reshape to 1 line
@@ -51,5 +51,39 @@ for (i in f){
   print(pred)
 }
 
+
+res=c("","")
+f=list.files("./original")
+for (i in f){
+  test_image <- image_load(paste("./original/",i,sep=""), #Need to create folder named dandelions and add images of dandelions to it. 
+                           target_size = c(224,224))
+  x <- image_to_array(test_image) #turn to array
+  x <- array_reshape(x, c(1, dim(x))) #reshape to 1 line
+  x <- x/255 # resize
+  
+  
+  pred <- model %>% predict(x)
+  if(pred[1,1]<0.50){
+    print(i)
+  }
+  print(pred)
+}
+
+res=c("","")
+f=list.files("./modify")
+for (i in f){
+  test_image <- image_load(paste("./modify/",i,sep=""), #Need to create folder named dandelions and add images of dandelions to it. 
+                           target_size = c(224,224))
+  x <- image_to_array(test_image) #turn to array
+  x <- array_reshape(x, c(1, dim(x))) #reshape to 1 line
+  x <- x/255 # resize
+  
+  
+  pred <- model %>% predict(x)
+  if(pred[1,1]<0.50){
+    print(i)
+  }
+  print(pred)
+}
 
 

@@ -1,0 +1,29 @@
+# Load the required package
+library(jpeg)
+
+# Load an example image
+img <- readJPEG("5.jpg")
+
+# Define the probability of changing a green pixel
+prob <- 0.25
+
+# Calculate the number of green pixels to change
+num_pixels <- round(prob * length(img))
+
+# Get the green channel of the image
+green_channel <- img[,,2]
+
+# Generate a vector of random pixel indices
+green_pixels_to_change <- sample.int(length(green_channel), num_pixels)
+
+# Generate a vector of random values to replace the green pixels
+new_green_values <- runif(num_pixels)
+
+# Replace the green pixels in the image with the new values
+green_channel[green_pixels_to_change] <- new_green_values
+
+# Replace the green channel in the image with the modified green channel
+img[,,2] <- green_channel
+
+# Save the modified image
+writeJPEG(img, "modified_imagegreen1.jpg")
