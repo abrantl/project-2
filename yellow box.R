@@ -32,9 +32,9 @@ main_func <- function(name) {
 }
 
 #set a working directory. Make sure the directory goes where the images you want to alter
-setwd("C:/Users/annab/OneDrive/Documents/project-2/dandelions") 
+setwd("C:/Users/annab/OneDrive/Documents/project-2/grass") 
 
-main_func("636597665741397587-dandelion-1097518082.jpg") #Change the file of the picture you want altered
+main_func("th-51260682.jpg") #Change the file of the picture you want altered
 
 #used for duplicity
 set.seed(123)

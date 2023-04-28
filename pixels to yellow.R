@@ -9,6 +9,9 @@ main_func <- function(name) {
   img <- readJPEG(name)
   new_name <- gsub("\\.jpg$", "_dist.jpg", name)
   
+ prob <- 0.01
+  num_pixels <- round(prob * length(img))
+  
 # Get image dimensions
 img_width <- dim(img)[1]
 img_height <- dim(img)[2]
@@ -16,7 +19,7 @@ img_height <- dim(img)[2]
 # Define rectangle dimensions
 rect_w <- img_width /4
 rect_h <- img_height / 1
-rect_x <- 500
+rect_x <- img_width / 2
 rect_y <- 0
 
 # Define dandelion yellow color
@@ -36,9 +39,9 @@ writeJPEG(img, new_name)
 }
 
 #set a working directory. Make sure the directory goes where the images you want to alter
-setwd("C:/Users/annab/OneDrive/Documents/project-2/dandelions") 
+setwd("C:/Users/annab/OneDrive/Documents/project-2/grass") 
 
-main_func("636597665741397587-dandelion-1097518082.jpg") #Change the file of the picture you want altered
+main_func("th-51260682.jpg") #Change the file of the picture you want altered
 
 #used for duplicity
 set.seed(123)
