@@ -1,5 +1,3 @@
-
-
 #Install the required packages. 
 #install.packages("jpeg")
 
@@ -11,7 +9,7 @@ library(tensorflow)
 library(reticulate)
 library(imager)
 
-yellow_func <- function(name) {
+yellow_dist_func <- function(name) {
   #This code changes pixels to yellow within a certain region of the picture
   img <- readJPEG(name)
   new_name <- gsub("\\.jpg$", "_dist.jpg", name)
@@ -24,7 +22,7 @@ yellow_func <- function(name) {
   # Define rectangle dimensions
   rect_w <- img_width /4
   rect_h <- img_height / 1
-  rect_x <- 500
+  rect_x <- img_width / 2
   rect_y <- 0
   
   # Define dandelion yellow color
@@ -45,7 +43,7 @@ yellow_func <- function(name) {
   return(new_name)
 }
 
-yellow_box_func <- function(name) {
+yellow_conc_func <- function(name) {
   #This code adds a yellow square to the middle of the image.
   img <- readJPEG(name)
   
@@ -153,66 +151,69 @@ green_func <- function(name) {
 
 #set a working directory. Make sure the directory goes where the images you want to alter
 setwd("C:/Users/oopsw/Desktop/project2/project-2/test") 
-img <- "18-4196734595.jpg"
-
-#pass all picture to flip algorithm first, 1st algorithm
-flipped <- flip_func(img) #Change the file of the picture you want altered
-
-#pass flipped image to algorithm to change randomly change set budget, 2nd algorithm
-modify_func(flipped) #Change the file of the picture you want altered
-
-#pass flipped image to algorithm that change pixel yellow randomly, 3rd algorithm
-yellow_func(flipped) #Change the file of the picture you want altered
-
-#pass flipped image to algorithm that draw a yellow box of pixel yellow, 4th algorithm 
-yellow_box_func(flipped) #Change the file of the picture you want altered
-
-#pass flipped image to algorithm that change pixels green, 5th algorithm
-green_func(flipped) #Change the file of the picture you want altered
 
 #get prediction results from pre-trained model
 # Load a pre-trained neural network
 model<-load_model_tf("./../dandelion_model")
-
-res=c("","")
 f=list.files(getwd())
-rates <- list()
-for (i in f){
-  test_image <- image_load(paste("./",i,sep=""), #Need to create folder named dandelions and add images of dandelions to it. 
-                           target_size = c(224,224))
-  x <- image_to_array(test_image) #turn to array
-  x <- array_reshape(x, c(1, dim(x))) #reshape to 1 line
-  x <- x/255 # resize
+edited <- c()
+
+for(i in f){
+  img <- i
+  
+  edited[1] <- img
+  #pass all picture to flip algorithm first, 1st algorithm
+  flipped <- flip_func(img) #Change the file of the picture you want altered
+  edited[2] <- flipped
+  
+  #pass flipped image to algorithm to change randomly change set budget, 2nd algorithm
+  edited[3] <- modify_func(flipped) #Change the file of the picture you want altered
+  #pass flipped image to algorithm that change pixel yellow randomly, 3rd algorithm
+  edited[4] <- yellow_dist_func(flipped) #Change the file of the picture you want altered
+  #pass flipped image to algorithm that draw a yellow box of pixel yellow, 4th algorithm 
+  edited[5] <- yellow_conc_func(flipped) #Change the file of the picture you want altered
+  #pass flipped image to algorithm that change pixels green, 5th algorithm
+  edited[6] <- green_func(flipped) #Change the file of the picture you want altered
+  
+  rates <- list()
+  for (j in edited){
+    test_image <- image_load(paste("./",j,sep=""), #Need to create folder named dandelions and add images of dandelions to it. 
+                             target_size = c(224,224))
+    x <- image_to_array(test_image) #turn to array
+    x <- array_reshape(x, c(1, dim(x))) #reshape to 1 line
+    x <- x/255 # resize
+    
+    pred <- model %>% predict(x)
+    print(j)
+    rates[[j]] <- list(pred)
+  }
+  
+  img_unlist <- as.numeric(unlist(rates[img]))
+  dandelion <- img_unlist[1] > img_unlist[2] #determine if the original image is predicted as dandelion or grass
+  if(dandelion) {
+    dandelion <- 1
+  } else{
+    dandelion <- 2
+  }
+  
+  diff <- c()
+  k <- 1
+  for (j in edited) {
+    temp_unlist <- as.numeric(unlist(rates[j]))
+    diff[k] <- img_unlist[dandelion] - temp_unlist[dandelion]
+    k = k+1
+  }
+  best_output_file <- edited[which(diff == max(diff))]
+  accuracy <- rates[best_output_file]
   
   
-  pred <- model %>% predict(x)
-  rates[[i]] <- list(pred)
+  print("Original file prediction")
+  print(rates[img])
+  print("Modified file prediction")
+  print(accuracy)
+  
+  #used for duplicity
+  set.seed(123)
 }
 
-img_unlist <- as.numeric(unlist(rates[img]))
-dandelion <- img_unlist[1] > img_unlist[2] #determine if the original image is predicted as dandelion or grass
-if(dandelion) {
-  dandelion <- 1
-} else{
-  dandelion <- 2
-}
 
-f=list.files(getwd())
-diff <- c()
-k <- 1
-for (i in f) {
-  temp_unlist <- as.numeric(unlist(rates[i]))
-  diff[k] <- img_unlist[dandelion] - temp_unlist[dandelion]
-  k = k+1
-}
-best_output_file <- f[which(diff == max(diff))]
-accuracy <- rates[best_output_file]
-
-print(best_output_file)
-print("Original file prediction")
-print(rates[img])
-print("Modified file prediction")
-print(accuracy)
-
-#used for duplicity
-set.seed(123)
