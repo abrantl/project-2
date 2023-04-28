@@ -1,3 +1,4 @@
+#doesnt work - attempting to read many files in a folder
 library(imager)
 
 setwd("C:/Users/annab/OneDrive/Documents/project-2")

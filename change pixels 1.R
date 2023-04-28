@@ -1,23 +1,39 @@
-# Load the required package
+#This code changes random pixels with a set budget
+
+#Install the required packages. 
+#install.packages("jpeg")
+
+
 library(jpeg)
 
-# Load an example image
-img <- readJPEG("AdobeStock_206345546-426480574.jpg") 
+main_func <- function(name) {
+  img <- readJPEG(name)
+  
+  new_name <- gsub("\\.jpg$", "_modified.jpg", name)
+  
+  # Define the probability of changing a pixel - pixel budget
+  prob <- 0.01
+  
+  # Calculate the number of pixels to change
+  num_pixels <- round(prob * length(img))
+  
+  # Generate a vector of random pixel indices
+  pixels_to_change <- sample.int(length(img), num_pixels)
+  
+  # Generate a vector of random values to replace the pixels
+  new_values <- runif(num_pixels)
+  
+  # Replace the pixels in the image with the new values
+  img[pixels_to_change] <- new_values
+  
+  writeJPEG(img, new_name)
+}
 
-# Define the probability of changing a pixel, meaning that we expect to change x% of the pixels of the image
-prob <- 0.01
+#set a working directory. Make sure the directory goes where the images you want to alter
+setwd("C:/Users/annab/OneDrive/Documents/project-2/dandelions") 
 
-# Calculate the number of pixels to change
-num_pixels <- round(prob * length(img))
+main_func("Dandelion-Flower-3153508128.jpg") #Change the file of the picture you want altered
 
-# Generate a vector of random pixel indices
-pixels_to_change <- sample.int(length(img), num_pixels)
+#used for duplicity
+set.seed(123)
 
-# Generate a vector of random values to replace the pixels
-new_values <- runif(num_pixels)
-
-# Replace the pixels in the image with the new values
-img[pixels_to_change] <- new_values
-
-# Save the modified image
-writeJPEG(img, "Adobe01.jpg")
