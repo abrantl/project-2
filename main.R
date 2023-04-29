@@ -258,11 +258,8 @@ green_func <- function(name) {
   return(new_name)
 }
 
-
-
 #set a working directory. Make sure the directory goes where the images you want to alter
 setwd("C:/Users/annab/OneDrive/Documents/project-2/black") 
-
 
 #get prediction results from pre-trained model
 #Load a pre-trained neural network
@@ -288,6 +285,7 @@ for(i in f){
   edited[6] <- green_func(flipped) #Change the file of the picture you want altered
   
   rates <- list()
+  # the given code to run model
   for (j in edited){
     test_image <- image_load(paste("./",j,sep=""), #Need to create folder named dandelions and add images of dandelions to it. 
                              target_size = c(224,224))
@@ -297,6 +295,7 @@ for(i in f){
     
     pred <- model %>% predict(x)
     print(j)
+    # save the results after running the prediction model to a list
     rates[[j]] <- list(pred)
   }
   
@@ -310,15 +309,18 @@ for(i in f){
   
   diff <- c()
   k <- 1
+  # calculate the difference between the original predicted rate and the predicted rate for the modified files
+  # the original rate variable is assigned based on which type the picture is classified
   for (j in edited) {
     temp_unlist <- as.numeric(unlist(rates[j]))
     diff[k] <- img_unlist[dandelion] - temp_unlist[dandelion]
     k = k+1
   }
+  # find the modified picture that has the best performance
   best_output_file <- edited[which(diff == max(diff))]
   accuracy <- rates[best_output_file]
   
-  
+  # output the comparison between original prediction matrix with best performed picture's prediction matrix
   print("Original file prediction")
   print(rates[img])
   print("Modified file prediction")
@@ -327,4 +329,3 @@ for(i in f){
   #used for duplicity
   set.seed(123)
 }
-
