@@ -38,9 +38,9 @@ for (i in f){
 
 
 res=c("","")
-f=list.files("./dandelions")
+f=list.files("./grass")
 for (i in f){
-  test_image <- image_load(paste("./dandelions/",i,sep=""), #Need to create folder named dandelions and add images of dandelions to it. 
+  test_image <- image_load(paste("./grass/",i,sep=""), #Need to create folder named dandelions and add images of dandelions to it. 
                            target_size = c(224,224))
   x <- image_to_array(test_image) #turn to array
   x <- array_reshape(x, c(1, dim(x))) #reshape to 1 line
