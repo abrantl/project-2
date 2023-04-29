@@ -261,7 +261,8 @@ green_func <- function(name) {
 
 
 #set a working directory. Make sure the directory goes where the images you want to alter
-setwd("C:/Users/oopsw/Desktop/project2/project-2/test") 
+setwd("C:/Users/annab/OneDrive/Documents/project-2/black") 
+
 
 #get prediction results from pre-trained model
 #Load a pre-trained neural network
